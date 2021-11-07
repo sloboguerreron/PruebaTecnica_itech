@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    Formulario de Contacto
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSave()" [formGroup]="contactForm">
+      <div class="form-group">
+        <label>Correo contacto</label>
+        <input type="text" class="form-control" id="email" placeholder="correo@example.com" formControlName="email" [ngClass]="isValidField('email')">
+        <div class="invalid-feedback">
+          <samp *ngIf="contactForm.get('email').errors?.required">El correo debe @</samp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nombre de contacto</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" formControlName="nombre" [ngClass]="isValidField('nombre')" maxlength="50">
+        <div class="invalid-feedback">
+          <samp *ngIf="contactForm.get('nombre').errors?.required">Debe escribir un Nombre, Minimo 2 caracteres, Maximo 50 caracteres</samp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Apellido de contacto</label>
+        <input type="text" class="form-control" id="apellido" placeholder="Apellidos completo" formControlName="apellido" [ngClass]="isValidField('apellido')" maxlength="50">
+        <div class="invalid-feedback">
+          <samp *ngIf="contactForm.get('apellido').errors?.required">Debe escribir un Apellido, Minimo 2 caracteres, Maximo 50 caracteres</samp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Numero de contacto</label>
+        <input type="text" class="form-control" id="numeroCel" placeholder="3128040530" formControlName="numeroCel" [ngClass]="isValidField('numeroCel')">
+        <div class="invalid-feedback">
+          <samp *ngIf="contactForm.get('numeroCel').errors?.required">el numero debe ser 10 digitos</samp>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</div>
