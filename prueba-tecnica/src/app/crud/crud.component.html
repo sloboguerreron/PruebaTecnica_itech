@@ -28,7 +28,7 @@
               <td>{{contacto.email}}</td>
               <td>{{contacto.numeroCel}}</td>
               <td>
-                <button class="btn btn-primary" >Editar</button>
+                <button class="btn btn-primary" (click)="abrirDialogo(contacto)">Editar</button>
               </td>
               <td>
                 <button class="btn btn-primary" (click)="onDeleteTarea(contacto.id)">eliminar</button>
@@ -39,3 +39,5 @@
       </div>
     </div>
   </div>
+
+  <br>

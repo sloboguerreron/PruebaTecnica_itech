@@ -1,3 +1,4 @@
+import { DialogCrudComponent } from './../dialog-crud/dialog-crud.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -5,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormularioService } from '../services/formulario.services';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface Contacto {
   id: string,
@@ -28,7 +30,7 @@ export class CrudComponent implements OnInit {
 
   contactos: Observable<Contacto[]>;
 
-  constructor(private fb: FormBuilder, private formSvc: FormularioService, private afs: AngularFirestore) {
+  constructor(private fb: FormBuilder, private formSvc: FormularioService, private afs: AngularFirestore, public dialog: MatDialog) {
     this.contactosCollection = afs.collection<Contacto>('contactos');
     this.contactos = this.contactosCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
@@ -48,5 +50,9 @@ export class CrudComponent implements OnInit {
     if (confirmacion) {
       this.formSvc.deleteTarea(id);
     }
+  }
+
+  abrirDialogo(data: Contacto) {
+    this.dialog.open(DialogCrudComponent, data);
   }
 }
